@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đú Trend</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heart"></div>
+      <div class="sky"></div>
+      <div class="heart-text">
+        <div class="drop drop-item" style="--i:1">
+          <p>I</p>
+        </div>
+        <span class="drop-item" style="--i:2">+</span>
+        <div class="drop drop-item" style="--i:3">
+          <p>You</p>
+        </div>
+        <span class="drop-item" style="--i:4">=</span>
+        <div class="drop drop-item" style="--i:5">
+          <p><ion-icon name="heart-sharp"></ion-icon></p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function shuffle (array) {
+      var i = array.length,
+        j = 0,
+        temp
+
+      while (i--) {
+        j = Math.floor(Math.random() * (i + 1))
+        temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+      }
+
+      return array
+    }
+    function createSky () {
+      let skyElement = document.querySelector('.sky')
+      let meteors = []
+      for (const x of shuffle(Array(20).keys())) {
+        meteors.push(`<span style="--i:${x + 1}"></span>`)
+      }
+      let htmlString = shuffle(meteors).join('\n')
+      skyElement.innerHTML = htmlString
+    }
+    function createHeart () {
+      let skyElement = document.querySelector('.heart')
+      let items = []
+      for (const x of shuffle(Array(99).keys())) {
+        items.push(`<div class="item" style="--i:${x + 1}">
+          <ion-icon name="heart-outline"></ion-icon>
+          </div>`)
+      }
+      let htmlString = items.join('\n')
+      skyElement.innerHTML = htmlString
+    }
+    createSky()
+    createHeart()
+  </script>
+</html>
